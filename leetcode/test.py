@@ -1,2 +1,2 @@
-a={'b':[],'c':[]}
-a['b'].appen
+a='12345'
+print(a.isdigit())
