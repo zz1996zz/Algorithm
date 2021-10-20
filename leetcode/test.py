@@ -1,6 +1,15 @@
 import functools
+import collections
 
-a=[1,2,3,4,5]
-b=functools.reduce(lambda x, y: 10*x + y, a)
-print(b)
-functools.re
+graph = collections.defaultdict(list)
+
+tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+
+
+for a,b in sorted(tickets):
+    graph[a].append(b)
+
+
+print(list(graph))
+
+
