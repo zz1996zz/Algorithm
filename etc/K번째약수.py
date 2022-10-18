@@ -1,11 +1,9 @@
-N, K = map(int, input().split())
-answer = 0
+import sys
+sys.stdin = open("input.txt", "rt")
 
-for i in range(1, N+1):
-    if N%i == 0:
-        answer+=1
-    if answer == K:
-        print(i)
-        break
-else:
+N, K = map(int, input().split())
+nlist = [x for x in range(1, N+1) if N % x == 0]
+if K > len(nlist):
     print(-1)
+else:
+    print(nlist[K - 1])
