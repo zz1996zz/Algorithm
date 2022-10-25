@@ -1,33 +1,15 @@
-# import sys
-# sys.stdin = open("input.txt", "rt")
-#
-# N, K = map(int, sys.stdin.readline().split())
-# nlist = sys.stdin.readline().split()
-# result = []
-#
-# for x in range(len(nlist)):
-#     for y in range(x+1, len(nlist)):
-#         for z in range(y+1, len(nlist)):
-#             sum = int(nlist[x]) + int(nlist[y]) + int(nlist[z])
-#             if sum in result:
-#                 continue
-#             result.append(sum)
-#
-# result.sort(reverse=True)
-# print(result[K-1])
-
-
+from itertools import combinations
 import sys
 sys.stdin = open("input.txt", "rt")
 
-N, K = map(int, sys.stdin.readline().split())
-nlist = list(map(int, sys.stdin.readline().split()))
-result = set()
+N, K = map(int, input().split())
+nlist = list(map(int, input().split()))
+combi = list(combinations(nlist, 3))
+temp = set()
 
-for x in range(N):
-    for y in range(x+1, N):
-        for z in range(y+1, N):
-            result.add(nlist[x] + nlist[y] + nlist[z])
-result = list(result)
-result.sort(reverse=True)
-print(result[K-1])
+for a, b, c in combi:
+    temp.add(a+b+c)
+
+temp = list(temp)
+temp.sort(reverse=True)
+print(temp[K - 1])

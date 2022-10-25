@@ -1,48 +1,22 @@
-# import sys
-# sys.stdin = open("input.txt", "rt")
-#
-# N = int(sys.stdin.readline())
-# scores = list(map(int, sys.stdin.readline().split()))
-# result, avg = [], 0
-#
-# avg = round(sum(scores)/len(scores))
-#
-# for i in range(len(scores)):
-#     num = abs(avg-scores[i])
-#     if len(result) == 0:
-#         result.append([scores[i], num, i+1])
-#     # 차이값이 작거나 같을 경우
-#     elif result[0][1]>=num:
-#         if result[0][1] > num:
-#             result[0] = [scores[i], num, i+1]
-#         # 차이값이 같은데 점수가 높거나 같을 경우
-#         elif result[0][1] == num and result[0][0] <= scores[i]:
-#             if result[0][0] < scores[i]:
-#                 result[0] = [scores[i], num, i+1]
-#             # 점수가 같은데 번호가 더 빠를 경우
-#             elif result[0][0] == scores[i] and result[0][2] > i:
-#                 result[0] = [scores[i], num, i+1]
-#             else:
-#                 continue
-# print(avg, result[0][2])
-
-
 import sys
+
 sys.stdin = open("input.txt", "rt")
 
-N = int(sys.stdin.readline())
-scores = list(map(int, sys.stdin.readline().split()))
-avg = int(sum(scores)/len(scores) + 0.5)
-min = 2147000000
+N = int(input())
+nlist = list(map(int, input().split()))
+average = round((sum(nlist) / N))
+diff = 2143000000
+max_value = 0
+index = 0
 
-for idx, val in enumerate(scores):
-    tmp = abs(avg-val)
-    if tmp < min:
-        min = tmp
-        score = val
-        answer = idx+1
-    elif tmp == min:
-        if score < val:
-            score = val
-            answer = idx+1
-print(avg, answer)
+for i in nlist:
+    if diff >= abs(average - i):
+        if diff > abs(average-i):
+            diff = abs(average - i)
+            max_value = i
+            index = nlist.index(i) + 1
+        if max_value < i:
+            max_value = i
+            index = nlist.index(i) + 1
+
+print(average, index)
