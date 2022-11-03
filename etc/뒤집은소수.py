@@ -1,22 +1,27 @@
 import sys
+
 sys.stdin = open("input.txt", "rt")
 
-def reverse(x:str):
-    return int(''.join(list(reversed(x))))
 
-def isPrime(x:int):
-    if x == 1:
-        return None
-    for i in range(2, x):
-        if x%i == 0:
-            return None
-    return x
-
-N=int(sys.stdin.readline())
-nums = list(map(str, sys.stdin.readline().split()))
+def reverse(x):
+    return int(''.join(list(reversed(str(x)))))
 
 
-for i in nums:
-    num = reverse(i)
-    if isPrime(num) != None:
-        print(num, end=' ')
+def isPrime(x):
+    cnt = 0
+    temp = True
+    for i in range(1, x + 1):
+       if x % i == 0:
+           cnt += 1
+       if cnt > 2:
+           temp = False
+           break
+    return temp
+
+N = int(input())
+nlist = list(map(int, input().split()))
+
+for i in range(N):
+    reverse_num = reverse(str(nlist[i]))
+    if reverse_num != 1 and isPrime(reverse_num):
+        print(reverse_num, end=" ")
