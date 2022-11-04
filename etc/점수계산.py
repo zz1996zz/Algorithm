@@ -2,15 +2,14 @@ import sys
 sys.stdin = open("input.txt", "rt")
 
 N = int(input())
-OX = list(map(int, input().split()))
-cnt = 0
+nlist = list(map(int, input().split()))
 answer = 0
+point = 0
 
-for i in OX:
+for i in nlist:
     if i == 1:
-        cnt += 1
-        answer += cnt
+        point += 1
+        answer += point
     else:
-        cnt = 0
-
+        point = 0
 print(answer)
