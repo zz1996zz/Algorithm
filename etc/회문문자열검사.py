@@ -4,8 +4,8 @@ sys.stdin = open("input.txt", "rt")
 N = int(input())
 
 for i in range(N):
-    tmp = str(input()).upper()
-    if tmp == tmp[::-1]:
-        print("#{0} YES" .format(i+1))
+    s = input().lower()
+    if s == ''.join(reversed(s)):
+        print("#" + str(i+1) + " YES")
     else:
-        print("#{0} NO" .format(i+1))
+        print("#" + str(i+1) + " NO")
