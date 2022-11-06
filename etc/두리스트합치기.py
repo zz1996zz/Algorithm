@@ -2,12 +2,11 @@ import sys
 
 sys.stdin = open("input.txt", "rt")
 
-answer = []
+N = int(input())
+nlist = list(map(int, input().split()))
+M = int(input())
+mlist = list(map(int, input().split()))
 
-for i in range(2):
-    N = int(input())
-    tmp = list(map(int, input().split()))
-    for j in range(N):
-        answer.append(tmp[j])
+nlist.extend(mlist)
 
-print(*(sorted(answer)))
+print(*sorted(nlist))
