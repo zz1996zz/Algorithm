@@ -2,35 +2,30 @@ import sys
 
 sys.stdin = open("input.txt", "rt")
 
-
-def check_dvd(capacity):
-    cnt = 1
-    tmp = 0
-
-    for v in music:
-        diff = capacity - tmp
-        if diff >= v:
-            tmp += v
-        else:
-            cnt += 1
-            tmp = v
-    return cnt
-
-
 N, M = map(int, input().split())
-music = list(map(int, input().split()))
-maxx = max(music)
-lt, rt = 1, sum(music)
+musics = list(map(int, input().split()))
+
+lt = 0
+rt = 10000 * M + 1
 answer = 2147000000
 
 while lt <= rt:
-    capacity = (lt + rt) // 2
-    cnt = check_dvd(capacity)
+    medium = (lt + rt) // 2
+    cnt = 1
+    nSum = 0
 
-    if cnt <= M and capacity >= maxx:
-        answer = capacity
-        rt = capacity - 1
-    else:
-        lt = capacity + 1
+    for i in musics:
+        if medium < nSum + i:
+            cnt += 1
+            if medium == nSum + i:
+                nSum = 0
+            nSum = i
+        else: nSum += i
+
+    if cnt <= M:
+        answer = min(answer, medium)
+        rt = medium - 1
+    elif cnt > M:
+        lt = medium + 1
 
 print(answer)
